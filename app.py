@@ -1,3 +1,19 @@
+import subprocess
+import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+try:
+    import transformers
+except ImportError:
+    install("transformers==4.38.2")
+    install("torch==2.1.2")
+from transformers import BlipProcessor, BlipForConditionalGeneration
+from PIL import Image
+import streamlit as st
+import torch
+
 import streamlit as st
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
